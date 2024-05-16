@@ -1,4 +1,4 @@
-{% set version = "0.3.2" %}
+{% set version = "0.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/dqrng_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/dqrng/dqrng_{{ version }}.tar.gz
-  sha256: cd02ca210aa40db5a3dfff317ab721c0eea3a94d6effdaf1068a527710393e9c
+  sha256: c042068d474cbaa87cb7e17c8568d7d60b5aad4b0a12d876efef036223ba0af8
 
 build:
   merge_build_host: true  # [win]
@@ -26,8 +26,10 @@ requirements:
     - r-bh                       # [build_platform != target_platform]
     - r-sitmo                    # [build_platform != target_platform]
     - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('m2w64_cxx') }}        # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
