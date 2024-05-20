@@ -21,16 +21,16 @@ build:
 
 requirements:
   build:
-    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
-    - r-rcpp                     # [build_platform != target_platform]
-    - r-bh                       # [build_platform != target_platform]
-    - r-sitmo                    # [build_platform != target_platform]
-    - {{ compiler('c') }}        # [not win]
-    - {{ stdlib("c") }}          # [not win]
-    - {{ compiler('cxx') }}      # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
-    - {{ compiler('m2w64_cxx') }}        # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-rcpp                       # [build_platform != target_platform]
+    - r-bh                         # [build_platform != target_platform]
+    - r-sitmo                      # [build_platform != target_platform]
+    - {{ compiler('c') }}          # [not win]
+    - {{ stdlib("c") }}            # [not win]
+    - {{ compiler('cxx') }}        # [not win]
+    - {{ compiler('m2w64_c') }}    # [win]
+    - {{ stdlib("m2w64_c") }}      # [win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -54,16 +54,15 @@ test:
     - "\"%R%\" -e \"library('dqrng')\""  # [win]
 
 about:
-  home: https://www.daqana.org/dqrng, https://github.com/daqana/dqrng
+  home: https://www.daqana.org/dqrng
+  dev_url: https://github.com/daqana/dqrng
   license: AGPL-3.0-only
-  summary: "Several fast random number generators are provided as C++ header only libraries: The PCG family by O'Neill (2014 <https://www.cs.hmc.edu/tr/hmc-cs-2014-0905.pdf>) as well as Xoroshiro128+ and Xoshiro256+ by Blackman and Vigna (2018 <arXiv:1805.01407>). In addition fast functions for generating random numbers
+  summary: "Several fast random number generators are provided as C++ header only libraries: The PCG family by O'Neill (2014 <https://www.cs.hmc.edu/tr/hmc-cs-2014-0905.pdf>) as well as the Xoroshiro / Xoshiro family by Blackman and Vigna (2021 <doi:10.1145/3460772>). In addition fast functions for generating random numbers
     according to a uniform, normal and exponential distribution are included. The latter two use the Ziggurat algorithm originally proposed by Marsaglia and Tsang (2000, <doi:10.18637/jss.v005.i08>). These functions are exported to R and as a C++ interface and are enabled for use with the default 64 bit generator from the
-    PCG family, Xoroshiro128+ and Xoshiro256+ as well as the 64 bit version of the 20 rounds Threefry engine (Salmon et al., 2011 <doi:10.1145/2063384.2063405>) as provided by the package 'sitmo'."
+    PCG family, Xoroshiro128+/++ and Xoshiro256+/++ as well as the 64 bit version of the 20 rounds Threefry engine (Salmon et al., 2011 <doi:10.1145/2063384.2063405>) as provided by the package 'sitmo'."
   license_family: AGPL
-
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/AGPL-3
-    - LICENSE
 extra:
   recipe-maintainers:
     - conda-forge/r
